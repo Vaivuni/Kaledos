@@ -56,16 +56,25 @@ body{
 }
 
 .container {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0 40px 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 100px 0 60px 0;
+  }
 }
 
 /* EKRANAI */
 .screen {
   max-width: 360px;
   width: 90%;
+  margin: 0 auto;
 }
 
 .hidden {
@@ -78,6 +87,13 @@ body{
   box-shadow: 0 0 40px var(--shadow-color);
   padding: 30px 20px;
   border-radius: 12px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .container > .screen > .envelope-wrapper {
+    padding: 25px 15px;
+  }
 }
 
 .envelope-wrapper {
@@ -89,6 +105,13 @@ body{
   width: 320px;
   height: 230px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .envelope-wrapper > .envelope {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 .envelope-wrapper > .envelope::before {
