@@ -4,6 +4,7 @@ const startButton = document.getElementById('startButton');
 // pasirinktas vardas (iš kortelių)
 let selectedName = null;
 
+// Voko animacija
 envelopeWrapper.addEventListener('click', () => {
     envelopeWrapper.classList.add('flap');
 
@@ -25,69 +26,64 @@ function setupStartScreen() {
     });
 }
 
-// Užkrauti vardus iš serverio
+// 🔹 Užkrauti vardus tiesiai iš pairs.json
 async function loadParticipants() {
-    const res = await fetch("/api/participants");
-    const names = await res.json();
+    try {
+        const res = await fetch("./pairs.json");
+        const pairs = await res.json();
 
-    const grid = document.getElementById("nameGrid");
+        const names = Object.keys(pairs);
+        const grid = document.getElementById("nameGrid");
 
-    names.forEach(name => {
-        const card = document.createElement("div");
-        card.classList.add("name-card");
-        card.textContent = name;
+        names.forEach(name => {
+            const card = document.createElement("div");
+            card.classList.add("name-card");
+            card.textContent = name;
 
-        card.addEventListener("click", () => {
-            document.querySelectorAll(".name-card")
-                .forEach(c => c.classList.remove("selected"));
+            card.addEventListener("click", () => {
+                document.querySelectorAll(".name-card")
+                    .forEach(c => c.classList.remove("selected"));
 
-            card.classList.add("selected");
-            selectedName = name;
+                card.classList.add("selected");
+                selectedName = name;
+            });
+
+            grid.appendChild(card);
         });
 
-        grid.appendChild(card);
-    });
+    } catch (err) {
+        console.error(err);
+        document.getElementById("nameGrid").textContent =
+            "Nepavyko užkrauti dalyvių.";
+    }
 }
 
-// Mygtukas „Sužinoti, kam dovanosiu“
-async function setupButton() {
+// 🔹 Mygtukas – tiesiog rodom porą
+function setupButton() {
     const button = document.getElementById("checkButton");
-    const codeInput = document.getElementById("codeInput");
     const result = document.getElementById("result");
 
     button.addEventListener("click", async () => {
-        const name = selectedName;
-        const code = codeInput.value.trim();
-
-        if (!name || !code) {
-            result.textContent = "Pasirink vardą ir įvesk kodą.";
+        if (!selectedName) {
+            result.textContent = "Pasirink savo vardą.";
             return;
         }
 
-        try {
-            const res = await fetch("/api/get-target", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ name, code })
-            });
+        const res = await fetch("./pairs.json");
+        const pairs = await res.json();
 
-            const data = await res.json();
+        const target = pairs[selectedName];
 
-            if (!res.ok) {
-                result.textContent = data.error || "Įvyko klaida.";
-                return;
-            }
-
-            result.textContent = "Tavo dovana bus skirta: " + data.target;
-        } catch (err) {
-            result.textContent = "Serverio klaida. Ar jis paleistas?";
+        if (!target) {
+            result.textContent = "Šiam vardui pora nerasta.";
+            return;
         }
+
+        result.textContent = "Tu dovanosi: " + target;
     });
 }
 
-// SNIEGO ANIMACIJA
+// ❄️ SNIEGAS
 const snowContainer = document.querySelector('.snow');
 
 function createSnowflakeDot() {
