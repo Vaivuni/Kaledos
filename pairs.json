@@ -1,34 +1,34 @@
 {
   "Redulė": {
-    "code": "1111",
-    "target": "Vytuks"
+    "code": "1364",
+    "target": "Rūtukas"
   },
   "Tėtis Linas": {
-    "code": "2222",
-    "target": "Vaivūni"
-  },
-  "Rūtukas": {
-    "code": "3333",
+    "code": "2622",
     "target": "Valentina"
   },
+  "Rūtukas": {
+    "code": "7775",
+    "target": "Tėtis Linas"
+  },
   "Jonelis": {
-    "code": "4444",
-    "target": "Linukas"
+    "code": "5505",
+    "target": "Vytuks"
   },
   "Valentina": {
-    "code": "5555",
+    "code": "5248",
     "target": "Redulė"
   },
   "Linukas": {
-    "code": "6666",
-    "target": "Rūtukas"
+    "code": "6320",
+    "target": "Vaivūni"
   },
   "Vaivūni": {
-    "code": "7777",
-    "target": "Tėtis Linas"
+    "code": "6568",
+    "target": "Linukas"
   },
   "Vytuks": {
-    "code": "8888",
+    "code": "5638",
     "target": "Jonelis"
   }
 }
