@@ -88,8 +88,15 @@ body{
   padding: 30px 20px;
   border-radius: 12px;
   margin: 0 auto;
-}
 
+@media (max-width: 768px) {
+94		-
+  .container > .screen > .envelope-wrapper {
+95		-
+    padding: 25px 15px;
+96	}
+97		-
+}
 
 .envelope-wrapper {
   position: relative;
