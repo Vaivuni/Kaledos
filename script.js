@@ -4,7 +4,6 @@ const startButton = document.getElementById('startButton');
 // pasirinktas vardas (iš kortelių)
 let selectedName = null;
 
-// Voko animacija
 envelopeWrapper.addEventListener('click', () => {
     envelopeWrapper.classList.add('flap');
 
@@ -26,14 +25,26 @@ function setupStartScreen() {
     });
 }
 
-// 🔹 Užkrauti vardus tiesiai iš pairs.json
+/**
+ * Užkrauna visus dalyvių vardus iš pairs.json
+ * Tikimasi, kad pairs.json struktūra:
+ * {
+ *   "Vaiva": { "code": "1111", "target": "Jonas" },
+ *   "Jonas": { "code": "2222", "target": "Ona" }
+ * }
+ */
 async function loadParticipants() {
     try {
         const res = await fetch("./pairs.json");
-        const pairs = await res.json();
+        if (!res.ok) {
+            throw new Error("Nepavyko nuskaityti pairs.json");
+        }
 
+        const pairs = await res.json();
         const names = Object.keys(pairs);
+
         const grid = document.getElementById("nameGrid");
+        grid.innerHTML = "";
 
         names.forEach(name => {
             const card = document.createElement("div");
@@ -53,37 +64,54 @@ async function loadParticipants() {
 
     } catch (err) {
         console.error(err);
-        document.getElementById("nameGrid").textContent =
-            "Nepavyko užkrauti dalyvių.";
+        const grid = document.getElementById("nameGrid");
+        grid.innerHTML = "<p>Nepavyko užkrauti dalyvių sąrašo.</p>";
     }
 }
 
-// 🔹 Mygtukas – tiesiog rodom porą
-function setupButton() {
+// Mygtukas „Sužinoti, kam dovanosiu“ – logika iš pairs.json
+async function setupButton() {
     const button = document.getElementById("checkButton");
+    const codeInput = document.getElementById("codeInput");
     const result = document.getElementById("result");
 
     button.addEventListener("click", async () => {
-        if (!selectedName) {
-            result.textContent = "Pasirink savo vardą.";
+        const name = selectedName;
+        const code = codeInput.value.trim();
+
+        if (!name || !code) {
+            result.textContent = "Pasirink vardą ir įvesk kodą.";
             return;
         }
 
-        const res = await fetch("./pairs.json");
-        const pairs = await res.json();
+        try {
+            const res = await fetch("./pairs.json");
+            if (!res.ok) {
+                throw new Error("Nepavyko nuskaityti pairs.json");
+            }
 
-        const target = pairs[selectedName];
+            const pairs = await res.json();
+            const entry = pairs[name];
 
-        if (!target) {
-            result.textContent = "Šiam vardui pora nerasta.";
-            return;
+            if (!entry) {
+                result.textContent = "Toks dalyvis nerastas.";
+                return;
+            }
+
+            if (entry.code !== code) {
+                result.textContent = "Neteisingas kodas.";
+                return;
+            }
+
+            result.textContent = "Tavo dovana bus skirta: " + entry.target;
+        } catch (err) {
+            console.error(err);
+            result.textContent = "Nepavyko nuskaityti duomenų failo.";
         }
-
-        result.textContent = "Tu dovanosi: " + target;
     });
 }
 
-// ❄️ SNIEGAS
+// SNIEGO ANIMACIJA
 const snowContainer = document.querySelector('.snow');
 
 function createSnowflakeDot() {
