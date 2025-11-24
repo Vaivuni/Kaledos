@@ -391,7 +391,7 @@ input[type="password"] {
 .sticker {
   position: absolute;
   top: 110px;
-  right: 110px;
+  right: 145px;
   width: 250px;
   height: 150px;
   background-image: url("sticker.png");
@@ -405,8 +405,8 @@ input[type="password"] {
 
 .sticker1 {
   position: absolute;
-  top: -30px;
-  right: 30px;
+  top: -25px;
+  right: 57px;
   width: 200px;
   height: 100px;
   background-image: url("sticker1.png");
@@ -421,7 +421,7 @@ input[type="password"] {
 .sticker2 {
   position: absolute;
   top: 170px;
-  right: -35px;
+  right: 0px;
   width: 155px;
   height: 55px;
   background-image: url("sticker2.png");
