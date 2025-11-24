@@ -1,0 +1,34 @@
+{
+  "Redulė": {
+    "code": "1111",
+    "target": "Vytuks"
+  },
+  "Tėtis Linas": {
+    "code": "2222",
+    "target": "Vaivūni"
+  },
+  "Rūtukas": {
+    "code": "3333",
+    "target": "Valentina"
+  },
+  "Jonelis": {
+    "code": "4444",
+    "target": "Linukas"
+  },
+  "Valentina": {
+    "code": "5555",
+    "target": "Redulė"
+  },
+  "Linukas": {
+    "code": "6666",
+    "target": "Rūtukas"
+  },
+  "Vaivūni": {
+    "code": "7777",
+    "target": "Tėtis Linas"
+  },
+  "Vytuks": {
+    "code": "8888",
+    "target": "Jonelis"
+  }
+}
