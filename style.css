@@ -241,7 +241,7 @@ body{
   width: 100%;
   max-width: 340px;
   height: 300px;
-  min-height: 500px;
+  min-height: 300px;
   max-height: 85vh;
   transition: all 0.6s ease-in-out;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
