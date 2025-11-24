@@ -328,11 +328,31 @@ input[type="password"] {
 }
 
 #result {
-  margin-top: 10px;
-  font-weight: 600;
-  color: #b51c1c;
+  margin-top: 15px;
+  padding: 15px 20px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #b51c1c 0%, #8f0f13 100%);
   text-align: center;
-  font-size: 13px;
+  font-size: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(181, 28, 28, 0.4);
+  animation: resultPop 0.5s ease-out;
+  border: 2px solid #d4af37;
+}
+
+@keyframes resultPop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 
