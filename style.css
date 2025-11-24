@@ -140,8 +140,7 @@ body{
   color: var(--txt-color);
   text-align: left;
   font-size: 14px;
-  overflow: hidden;
-  max-height: 100%;
+  width: 100%;
 }
 
 .envelope > .letter > .text p {
@@ -213,13 +212,17 @@ body{
 .flap > .envelope > .letter {
   bottom: 0;
   right: 0;
-  width: 290px;
-  height: 300px;
+  width: 100%;
+  height: auto;
+  min-height: 450px;
+  max-height: 80vh;
   transform: none;
   transition: all 0.6s ease-in-out;
   box-shadow: none;
-  padding: 30px 16px;
-  font-size: 16px;
+  padding: 20px 15px;
+  font-size: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* BENDRAS MYGTUKŲ STILIUS */
@@ -305,12 +308,14 @@ input[type="password"] {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin-top: 10px;
+  position: relative;
+  z-index: 100;
 }
 
 .name-card {
   background: #ffffff;
   border: 2px solid #d0bca4;
-  padding: 2px 0;
+  padding: 8px 4px;
   border-radius: 8px;
   text-align: center;
   font-size: 13px;
@@ -318,13 +323,16 @@ input[type="password"] {
   cursor: pointer;
   transition: 0.2s;
   color: #4a2f22;
+  position: relative;
+  z-index: 100;
 }
 
 .name-card.selected {
   background: #ffe5e5;
   border-color: #b31217;
   color: #b31217;
-  transform: scale(1.05);
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(181, 28, 28, 0.3);
 }
 
 .sticker {
