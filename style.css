@@ -132,6 +132,7 @@ body{
   box-shadow: 0 0 5px var(--shadow-color);
   padding: 20px 5px;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .envelope > .letter > .text {
