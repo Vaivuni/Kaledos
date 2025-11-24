@@ -35,7 +35,7 @@ function setupStartScreen() {
  */
 async function loadParticipants() {
     try {
-        const res = await fetch("./pairs.json");
+        const res = await fetch("./pairs.json?v=" + Date.now());
         if (!res.ok) {
             throw new Error("Nepavyko nuskaityti pairs.json");
         }
@@ -85,7 +85,7 @@ async function setupButton() {
         }
 
         try {
-            const res = await fetch("./pairs.json");
+            const res = await fetch("./pairs.json?v=" + Date.now());
             if (!res.ok) {
                 throw new Error("Nepavyko nuskaityti pairs.json");
             }
